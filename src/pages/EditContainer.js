@@ -58,7 +58,7 @@ function EditContainer() {
         Aşağıdaki kodu sitenizin <code>&lt;head&gt;</code> etiketinin içine ekleyin:
       </p>
       <pre className="bg-secondary p-4 rounded text-light mt-2">
-        {`<script async src="http://localhost:5000/api/containers/scripts/${container.containerId}.js"></script>`}
+        {`<script async src="https://script-service-backend.onrender.com/api/containers/scripts/${container.containerId}.js"></script>`}
       </pre>
     </div>
   );
