@@ -2,7 +2,8 @@
 import axios from 'axios';
 
 // Backend API URL'sini belirleyin
-const API_URL = 'http://localhost:5000/api';
+const API_URL = "https://script-service-backend.onrender.com/api/";
+
 
 // axios instance oluşturma
 const api = axios.create({
@@ -12,6 +13,8 @@ const api = axios.create({
 // İstek interceptor'ı ekleyerek her isteğe token ekleme
 api.interceptors.request.use(
   (config) => {
+    console.log(API_URL);
+    
     const token = localStorage.getItem('token');
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
