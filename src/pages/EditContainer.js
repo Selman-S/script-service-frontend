@@ -1,8 +1,8 @@
 // src/pages/EditContainer.js
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import api from '../services/api';
 import { getContainers, updateContainer } from '../services/containerService';
+import toast from 'react-hot-toast'; // Eklendi
 
 function EditContainer() {
   const { id } = useParams();
@@ -26,10 +26,10 @@ function EditContainer() {
 
   const handleUpdate = async () => {
     try {
-      await updateContainer()
-      alert('Script güncellendi.');
+      await updateContainer(id, scriptContent)
+      toast.success('Script başarıyla güncellendi!');
     } catch (err) {
-      console.error(err);
+      toast.error('Script güncellenemedi: ' + err.response.data.message);
     }
   };
 

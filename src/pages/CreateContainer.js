@@ -1,7 +1,7 @@
 // src/pages/CreateContainer.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../services/api';
+import toast from 'react-hot-toast'; // Eklendi
 import { createContainer } from '../services/containerService';
 
 function CreateContainer() {
@@ -11,10 +11,11 @@ function CreateContainer() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await createContainer()
+      const res = await createContainer(name)
+      toast.success('Container başarıyla oluşturuldu!');
       navigate(`/edit-container/${res.data._id}`);
     } catch (err) {
-      console.error(err);
+      toast.error('Container oluşturulamadı: ' + err.response.data.message);
     }
   };
 

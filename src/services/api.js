@@ -30,7 +30,11 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    const errorMessage = err.response && err.response.data && err.response.data.message
+  ? err.response.data.message
+  : 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.';
     // Örneğin, yetkisiz erişim durumunda kullanıcıyı çıkış yaptırabilirsiniz
+    toast.error('Giriş başarısız: ' + errorMessage);
     if (error.response && error.response.status === 401) {
       localStorage.removeItem('token');
       window.location.href = '/login';

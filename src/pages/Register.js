@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import toast from 'react-hot-toast'; // Eklendi
 
 function Register() {
   const [email, setEmail] = useState('');
@@ -17,10 +18,10 @@ function Register() {
     e.preventDefault();
     try {
       await api.post('/auth/register', { email, password });
-      alert('Kayıt başarılı! Giriş sayfasına yönlendiriliyorsunuz.');
+      toast.success('Kayıt başarılı! Giriş sayfasına yönlendiriliyorsunuz.');
       navigate('/login');
     } catch (err) {
-      alert('Kayıt başarısız: ' + err.response.data);
+      toast.error('Kayıt başarısız: ' + err.response.data.message);
     }
   };
 

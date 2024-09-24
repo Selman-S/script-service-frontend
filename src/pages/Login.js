@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import toast from 'react-hot-toast'; // Eklendi
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -18,9 +19,10 @@ function Login() {
     try {
       const res = await api.post('/auth/login', { email, password });
       localStorage.setItem('token', res.data.token);
+      toast.success('Giriş başarılı!'); // Başarılı giriş bildirimi
       navigate('/dashboard');
     } catch (err) {
-      alert('Giriş başarısız: ' + err.response.data);
+      toast.error('Giriş başarısız: ' + err.response.data.message); // Hata bildirimi
     }
   };
 
