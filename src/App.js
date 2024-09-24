@@ -16,7 +16,27 @@ function App() {
       <div className="flex flex-col min-h-screen bg-primary text-light">
         <NavbarComponent />
         {/* Toaster bileşenini ekliyoruz */}
-        <Toaster position="top-right" reverseOrder={false} /> {/* Eklendi */}
+        // src/App.js
+<Toaster
+  position="top-right"
+  reverseOrder={false}
+  toastOptions={{
+    // Global varsayılan seçenekler
+    success: {
+      style: {
+        background: '#415a77',
+        color: '#e0e1dd',
+      },
+    },
+    error: {
+      style: {
+        background: '#b00020',
+        color: '#ffffff',
+      },
+    },
+  }}
+/>
+
         <div className="container mx-auto flex-1 p-4">
           <Routes>
             <Route path="/" element={<Navigate to="/login" />} />
