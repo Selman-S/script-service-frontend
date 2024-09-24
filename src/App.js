@@ -16,7 +16,7 @@ function App() {
       <div className="flex flex-col min-h-screen bg-primary text-light">
         <NavbarComponent />
         {/* Toaster bileşenini ekliyoruz */}
-        // src/App.js
+      
 <Toaster
   position="top-right"
   reverseOrder={false}

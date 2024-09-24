@@ -1,6 +1,6 @@
 // src/services/api.js
 import axios from 'axios';
-
+import toast from 'react-hot-toast'; // Eklendi
 // Backend API URL'sini belirleyin
 const API_URL = "https://script-service-backend.onrender.com/api/";
 
@@ -30,8 +30,8 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    const errorMessage = err.response && err.response.data && err.response.data.message
-  ? err.response.data.message
+    const errorMessage = error.response && error.response.data && error.response.data.message
+  ? error.response.data.message
   : 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.';
     // Örneğin, yetkisiz erişim durumunda kullanıcıyı çıkış yaptırabilirsiniz
     toast.error('Giriş başarısız: ' + errorMessage);
